@@ -566,6 +566,43 @@
         ]
       }
     },
+    "/api/Trips": {
+      "get": {
+        "tags": [
+          "Trips"
+        ],
+        "operationId": "GetTrips",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripsDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Users/test/register": {
       "post": {
         "tags": [
@@ -1384,6 +1421,20 @@
             "format": "int32"
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TripsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "loadId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "details": {
             "type": "string",
             "nullable": true
           }
