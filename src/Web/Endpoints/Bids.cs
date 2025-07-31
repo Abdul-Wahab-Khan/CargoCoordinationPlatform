@@ -1,4 +1,6 @@
 
+using CargoCoordinationPlatform.Application.Bid.Queries.GetBids;
+using CargoCoordinationPlatform.Application.Common.Models;
 using CleanArchitecture.Application.Bid.Commands.CreateBid;
 using CleanArchitecture.Application.Bid.Commands.UpdateBid;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -9,8 +11,16 @@ public class Bids : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder groupBuilder)
     {
+        groupBuilder.MapGet(GetBids).RequireAuthorization();
         groupBuilder.MapPost(CreateBid).RequireAuthorization();
         groupBuilder.MapPatch("{id}", UpdateBid).RequireAuthorization();
+    }
+
+    public async Task<Ok<IList<BidsDto>>> GetBids(ISender sender, [AsParameters] GetBidsQuery query)
+    {
+        var result = await sender.Send(query);
+
+        return TypedResults.Ok(result);
     }
 
     public async Task<Created<int>> CreateBid(ISender sender, CreateBidCommand command)

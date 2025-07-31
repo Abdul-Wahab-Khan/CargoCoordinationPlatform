@@ -7,6 +7,32 @@
   },
   "paths": {
     "/api/Bids": {
+      "get": {
+        "tags": [
+          "Bids"
+        ],
+        "operationId": "GetBids",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BidsDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Bids"
@@ -36,7 +62,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/Bids/{id}": {
@@ -85,6 +116,32 @@
       }
     },
     "/api/Loads": {
+      "get": {
+        "tags": [
+          "Loads"
+        ],
+        "operationId": "GetLoads",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoadsDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Loads"
@@ -934,6 +991,24 @@
   },
   "components": {
     "schemas": {
+      "BidsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "loadInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "CreateBidCommand": {
         "type": "object",
         "additionalProperties": false,
@@ -976,6 +1051,77 @@
           }
         }
       },
+      "LoadsDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "cargoType": {
+            "$ref": "#/components/schemas/CargoType"
+          },
+          "weight": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "pickupTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pricingMode": {
+            "$ref": "#/components/schemas/PricingMode"
+          },
+          "status": {
+            "$ref": "#/components/schemas/LoadStatus"
+          },
+          "bidsInfo": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CargoType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Basic"
+        ],
+        "enum": [
+          1
+        ]
+      },
+      "PricingMode": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Standard",
+          "Express"
+        ],
+        "enum": [
+          1,
+          2
+        ]
+      },
+      "LoadStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Open",
+          "Assigned",
+          "Completed",
+          "Cancelled"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "CreateLoadCommand": {
         "type": "object",
         "additionalProperties": false,
@@ -1001,28 +1147,6 @@
             "$ref": "#/components/schemas/PricingMode"
           }
         }
-      },
-      "CargoType": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "Basic"
-        ],
-        "enum": [
-          1
-        ]
-      },
-      "PricingMode": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "Standard",
-          "Express"
-        ],
-        "enum": [
-          1,
-          2
-        ]
       },
       "AssignLoadCommand": {
         "type": "object",

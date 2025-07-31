@@ -10,4 +10,9 @@ public class Loads : BaseAuditableEntity
     public PricingMode PricingMode { get; set; }
     public LoadStatus Status { get; set; } = LoadStatus.Open;
     public IList<Bids> Bids { get; private set; } = [];
+
+    public override string ToString()
+    {
+        return $"{Origin} => {Destination}, weight = {Weight}, pickup time = {PickupTime}, Status = {Status}";
+    }
 }

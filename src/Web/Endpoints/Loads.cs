@@ -1,3 +1,4 @@
+using CargoCoordinationPlatform.Application.Load.Queries.GetLoads;
 using CleanArchitecture.Application.Load.Commands.AssignLoad;
 using CleanArchitecture.Application.Load.Commands.CreateLoad;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -8,8 +9,16 @@ public class Loads : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder groupBuilder)
     {
+        groupBuilder.MapGet(GetLoads).RequireAuthorization();
         groupBuilder.MapPost(CreateLoad).RequireAuthorization();
         groupBuilder.MapPatch("{id}/accept", AcceptLoad).RequireAuthorization();
+    }
+
+    public async Task<Ok<IList<LoadsDto>>> GetLoads(ISender sender, [AsParameters] GetLoadsQuery query)
+    {
+        var result = await sender.Send(query);
+
+        return TypedResults.Ok(result);
     }
 
     public async Task<Created<int>> CreateLoad(ISender sender, CreateLoadCommand command)
