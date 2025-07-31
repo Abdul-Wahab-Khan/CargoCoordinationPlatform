@@ -4,9 +4,6 @@ namespace CargoCoordinationPlatform.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<TodoList> TodoLists { get; }
-
-    DbSet<TodoItem> TodoItems { get; }
     DbSet<Loads> Loads { get; }
     DbSet<Bids> Bids { get; }
     DbSet<Trips> Trips { get; }
