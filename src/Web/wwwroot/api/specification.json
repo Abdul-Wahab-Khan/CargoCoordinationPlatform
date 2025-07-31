@@ -6,6 +6,44 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Load": {
+      "post": {
+        "tags": [
+          "Load"
+        ],
+        "operationId": "CreateLoad",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLoadCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/TodoItems": {
       "get": {
         "tags": [
@@ -776,6 +814,54 @@
   },
   "components": {
     "schemas": {
+      "CreateLoadCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "cargoType": {
+            "$ref": "#/components/schemas/CargoType"
+          },
+          "weight": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "pickupTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pricingMode": {
+            "$ref": "#/components/schemas/PricingMode"
+          }
+        }
+      },
+      "CargoType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Basic"
+        ],
+        "enum": [
+          1
+        ]
+      },
+      "PricingMode": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Standard",
+          "Express"
+        ],
+        "enum": [
+          1,
+          2
+        ]
+      },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",
         "additionalProperties": false,
