@@ -9,4 +9,5 @@ public class Loads : BaseAuditableEntity
     public DateTime PickupTime { get; set; }
     public PricingMode PricingMode { get; set; }
     public LoadStatus Status { get; set; } = LoadStatus.Open;
+    public IList<Bids> Bids { get; private set; } = [];
 }
