@@ -351,12 +351,12 @@
         ]
       }
     },
-    "/api/Users/register": {
+    "/api/Users/test/register": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersRegister",
+        "operationId": "PostApiUsersTestRegister",
         "requestBody": {
           "x-name": "registration",
           "content": {
@@ -386,12 +386,12 @@
         }
       }
     },
-    "/api/Users/login": {
+    "/api/Users/test/login": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersLogin",
+        "operationId": "PostApiUsersTestLogin",
         "parameters": [
           {
             "name": "useCookies",
@@ -438,12 +438,12 @@
         }
       }
     },
-    "/api/Users/refresh": {
+    "/api/Users/test/refresh": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersRefresh",
+        "operationId": "PostApiUsersTestRefresh",
         "requestBody": {
           "x-name": "refreshRequest",
           "content": {
@@ -470,12 +470,12 @@
         }
       }
     },
-    "/api/Users/confirmEmail": {
+    "/api/Users/test/confirmEmail": {
       "get": {
         "tags": [
           "Users"
         ],
-        "operationId": "GetApiUsersConfirmEmail",
+        "operationId": "GetApiUsersTestConfirmEmail",
         "parameters": [
           {
             "name": "userId",
@@ -514,12 +514,12 @@
         }
       }
     },
-    "/api/Users/resendConfirmationEmail": {
+    "/api/Users/test/resendConfirmationEmail": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersResendConfirmationEmail",
+        "operationId": "PostApiUsersTestResendConfirmationEmail",
         "requestBody": {
           "x-name": "resendRequest",
           "content": {
@@ -539,12 +539,12 @@
         }
       }
     },
-    "/api/Users/forgotPassword": {
+    "/api/Users/test/forgotPassword": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersForgotPassword",
+        "operationId": "PostApiUsersTestForgotPassword",
         "requestBody": {
           "x-name": "resetRequest",
           "content": {
@@ -574,12 +574,12 @@
         }
       }
     },
-    "/api/Users/resetPassword": {
+    "/api/Users/test/resetPassword": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersResetPassword",
+        "operationId": "PostApiUsersTestResetPassword",
         "requestBody": {
           "x-name": "resetRequest",
           "content": {
@@ -609,12 +609,12 @@
         }
       }
     },
-    "/api/Users/manage/2fa": {
+    "/api/Users/test/manage/2fa": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersManage2fa",
+        "operationId": "PostApiUsersTestManage2fa",
         "requestBody": {
           "x-name": "tfaRequest",
           "content": {
@@ -659,12 +659,12 @@
         ]
       }
     },
-    "/api/Users/manage/info": {
+    "/api/Users/test/manage/info": {
       "get": {
         "tags": [
           "Users"
         ],
-        "operationId": "GetApiUsersManageInfo",
+        "operationId": "GetApiUsersTestManageInfo",
         "responses": {
           "200": {
             "description": "",
@@ -700,7 +700,7 @@
         "tags": [
           "Users"
         ],
-        "operationId": "PostApiUsersManageInfo",
+        "operationId": "PostApiUsersTestManageInfo",
         "requestBody": {
           "x-name": "infoRequest",
           "content": {
@@ -1246,8 +1246,7 @@
             "format": "int32"
           },
           "summary": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       }

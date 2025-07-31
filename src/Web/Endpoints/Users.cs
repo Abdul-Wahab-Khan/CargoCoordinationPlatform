@@ -6,7 +6,7 @@ public class Users : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder groupBuilder)
     {
-         groupBuilder.MapGroup("users")
+         groupBuilder.MapGroup("test")
             .MapIdentityApi<ApplicationUser>();
     }
 }
