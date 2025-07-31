@@ -9,7 +9,7 @@ public class Bids : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder groupBuilder)
     {
-        groupBuilder.MapPost(CreateBid);
+        groupBuilder.MapPost(CreateBid).RequireAuthorization();
         groupBuilder.MapPatch("{id}", UpdateBid).RequireAuthorization();
     }
 
