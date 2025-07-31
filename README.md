@@ -1,10 +1,10 @@
-﻿# CargoCoordinationPlatform
+﻿# Cargo Coordination Platform back end implementation
 
 The project was generated using the [Clean.Architecture.Solution.Template](https://github.com/jasontaylordev/CleanArchitecture) version 9.0.12.
 
-## Build
+## Getting started
 
-Run `dotnet build -tl` to build the solution.
+Download or clone the project and run `dotnet build -tl` to build the solution.
 
 ## Run
 
@@ -17,42 +17,21 @@ dotnet watch run
 
 Navigate to https://localhost:5001. The application will automatically reload if you change any of the source files.
 
-## Code Styles & Formatting
+## How to authenticate?
 
-The template includes [EditorConfig](https://editorconfig.org/) support to help maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. The **.editorconfig** file defines the coding styles applicable to this solution.
-
-## Code Scaffolding
-
-The template includes support to scaffold new commands and queries.
-
-Start in the `.\src\Application\` folder.
-
-Create a new command:
+Copy the following credentials as they will be seeded to the databases when you run the application.
 
 ```
-dotnet new ca-usecase --name CreateTodoList --feature-name TodoLists --usecase-type command --return-type int
+administrator@localhost
+Administrator1!
 ```
 
-Create a new query:
+leave the 2 factor fields empty and send the request and get an access token, grab it and authorize yourself in swagger UI or any other tool you are using.
 
-```
-dotnet new ca-usecase -n GetTodos -fn TodoLists -ut query -rt TodosVm
-```
+## Consuming APIs
 
-If you encounter the error *"No templates or subcommands found matching: 'ca-usecase'."*, install the template and try again:
+Consuming the APIs is just simple, first we need to create a load by sending a request to Loads `POST` endpoint and then the reponse will contain an ID.
 
-```bash
-dotnet new install Clean.Architecture.Solution.Template::9.0.12
-```
+Grab the Id and now you can create a `Bid`. more then 1 bid cannot be create for a load as its prevented in validation.
 
-## Test
-
-The solution contains unit, integration, and functional tests.
-
-To run the tests:
-```bash
-dotnet test
-```
-
-## Help
-To learn more about the template go to the [project website](https://github.com/jasontaylordev/CleanArchitecture). Here you can find additional guidance, request new features, report a bug, and discuss the template with other users.
+And when finally we can call `Loads/{id}` of `PATCH` request to accept a load and create a `Trip` for it.
