@@ -5,7 +5,7 @@ namespace CargoCoordinationPlatform.Application.Trip.Queries.GetTrips;
 
 public record GetTripQuery : IRequest<TripsDto>
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 }
 
 public class GetTripHandler(IApplicationDbContext context, IMapper mapper) : IRequestHandler<GetTripQuery, TripsDto>

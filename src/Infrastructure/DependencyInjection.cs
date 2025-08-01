@@ -3,6 +3,8 @@ using CargoCoordinationPlatform.Domain.Constants;
 using CargoCoordinationPlatform.Infrastructure.Data;
 using CargoCoordinationPlatform.Infrastructure.Data.Interceptors;
 using CargoCoordinationPlatform.Infrastructure.Identity;
+using CargoCoordinationPlatform.Infrastructure.Interfaces;
+using CargoCoordinationPlatform.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -49,5 +51,7 @@ public static class DependencyInjection
 
         builder.Services.AddAuthorization(options =>
             options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));
+
+        builder.Services.AddScoped<ICacheService, RedisCacheService>();
     }
 }

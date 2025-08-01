@@ -231,10 +231,10 @@
           {
             "name": "Id",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "nullable": true
+              "format": "int32"
             },
             "x-position": 1
           }
