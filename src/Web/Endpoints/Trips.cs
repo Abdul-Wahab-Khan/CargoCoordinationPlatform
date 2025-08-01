@@ -8,25 +8,15 @@ namespace CargoCoordinationPlatform.Web.Endpoints;
 
 public class Trips : EndpointGroupBase
 {
-    private readonly ICacheService _cacheService;
-    public Trips()
-    {
-        _cacheService = new RedisCacheService();
-    }
-
-    public Trips(ICacheService cacheService)
-    {
-        _cacheService = cacheService;
-    }
     public override void Map(RouteGroupBuilder groupBuilder)
     {
         groupBuilder.MapGet(GetTrips).RequireAuthorization();
     }
 
-    public async Task<Ok<TripsDto>> GetTrips(ISender sender, [AsParameters] GetTripQuery query)
+    public async Task<Ok<TripsDto>> GetTrips(ISender sender, [AsParameters] GetTripQuery query, ICacheService cacheService)
     {
         string cacheKey = $"trip-{query.Id}";
-        var trip = await _cacheService.GetOrCreateAsync(
+        var trip = await cacheService.GetOrCreateAsync(
             cacheKey,
             async () => await sender.Send(query),
             TimeSpan.FromMinutes(5)
