@@ -35,3 +35,11 @@ Consuming the APIs is just simple, first we need to create a load by sending a r
 Grab the Id and now you can create a `Bid`. more then 1 bid cannot be create for a load as its prevented in validation.
 
 And when finally we can call `Loads/{id}` of `PATCH` request to accept a load and create a `Trip` for it.
+
+## Redis
+
+I have used redis cache for two routes as request in the file, in `Trips/{id}` and `Loads/{id}`. both of them first searches in the cache if found, the value is returned and if not found it searches in query which we have passed to it, and cache it. 
+
+You can check out the code for this logic in `RedisCacheService` in infrastructure layer.
+
+A redis server must be running before using it in this endpoints.
